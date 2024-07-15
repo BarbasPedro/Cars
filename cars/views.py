@@ -1,14 +1,7 @@
-from django.forms import BaseModelForm
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
-<<<<<<< HEAD
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView, UpdateView)
-=======
-from django.views import View
-from django.views.generic import CreateView, ListView
->>>>>>> c67331d (Feat: Reescrevendo NewCarView como CreateView e testando.)
-
+from django.utils.decorators import method_decorator
 from cars.forms import CarModelForm
 from cars.models import Car
 
@@ -26,24 +19,20 @@ class CarsListView(ListView):
         cars = cars.filter(model__icontains=search)
       return cars
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c67331d (Feat: Reescrevendo NewCarView como CreateView e testando.)
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class NewCarCreateView(CreateView):
   model = Car
   form = CarModelForm
   template_name = 'new_car.html'
   success_url = '/cars/'
   fields = '__all__'
-<<<<<<< HEAD
 
 
 class CarDetailView(DetailView):
   model = Car
   template_name = 'car_detail.html'
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class CarUpdateView(UpdateView):
   model = Car
   form_class = CarModelForm
@@ -52,10 +41,8 @@ class CarUpdateView(UpdateView):
   def get_success_url(self):
     return reverse_lazy('car_detail', kwargs={'pk': self.object.pk})
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class CarDeleteView(DeleteView):
   model = Car
   template_name = 'car_delete.html'
   success_url = '/cars/'
-=======
->>>>>>> c67331d (Feat: Reescrevendo NewCarView como CreateView e testando.)
