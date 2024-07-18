@@ -1,5 +1,6 @@
 import os
 
+import openai
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -55,4 +56,5 @@ class CarUpdateView(UpdateView):
 class CarDeleteView(DeleteView):
   model = Car
   template_name = 'car_delete.html'
+  success_url = '/cars/'
   success_url = '/cars/'
