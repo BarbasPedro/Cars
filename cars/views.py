@@ -6,10 +6,10 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
-from dotenv import load_dotenv
-
-from cars.forms import CarModelForm
 from cars.models import Car
+from cars.forms import CarModelForm
+
+from dotenv import load_dotenv
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')

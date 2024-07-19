@@ -1,5 +1,7 @@
-import openai
 import os
+
+import openai
+
 
 def get_car_ai_bio(model, brand, year):
     prompt = f'''
@@ -10,7 +12,7 @@ def get_car_ai_bio(model, brand, year):
 
     try:
         response = openai.ChatCompletion.create(
-            model='gpt-3.5-turbo',
+            model='gpt-3.5-turbo',  # ou o modelo adequado
             messages=[
                 {"role": "system", "content": "Você é um assistente de vendas de carros."},
                 {"role": "user", "content": prompt}
@@ -21,4 +23,4 @@ def get_car_ai_bio(model, brand, year):
         return response['choices'][0]['message']['content'].strip()
     except Exception as e:
         print(f"Erro ao chamar a API da OpenAI: {e}")
-        return "Descrição não disponível no momento."
+        return("Descrição indisponível.")
