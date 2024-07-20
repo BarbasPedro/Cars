@@ -122,7 +122,8 @@
         />
       {% endif %}
       <h2>{{ car.brand }} {{ car.model }}</h2>
-      <p>{{ car.factory_year }} - R$ {{ car.value }}</p>
+      {% load currency %}
+      <p>{{ car.factory_year }} - {{ car.value|currency }}</p>
     </div>
   </a>
   {% endfor %} {% else %}
